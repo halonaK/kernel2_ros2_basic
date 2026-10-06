@@ -10,6 +10,9 @@ from rclpy.node import Node
 from turtlesim.msg import Pose
 
 
+SAFE_DISTANCE = 2.0
+
+
 def distance_between(first_pose, second_pose):
     """두 위치 사이의 유클리드 거리를 계산합니다."""
     return math.hypot(
@@ -17,11 +20,8 @@ def distance_between(first_pose, second_pose):
     )
 
 
-def should_stop(distance, safe_distance):
+def should_stop(distance, safe_distance=SAFE_DISTANCE):
     """안전거리보다 가까우면 정지 여부를 반환합니다."""
-    # 실습 1: 안전거리 정지 조건을 작성합니다.
-    # 설명: 아래는 완성된 코드입니다.
-    # 함께 작성할 코드:
     return distance < safe_distance
 
 
@@ -30,8 +30,7 @@ class DistanceGuard(Node):
 
     def __init__(self):
         super().__init__('lesson_12_distance_guard')
-        self.declare_parameter('safe_distance', 2.0)
-        self.safe_distance = float(self.get_parameter('safe_distance').value)
+        self.safe_distance = SAFE_DISTANCE
         self.turtle1_pose = None
         self.turtle2_pose = None
         self.turn_speed = 0.0
@@ -43,13 +42,9 @@ class DistanceGuard(Node):
         self.turtle2_subscription = self.create_subscription(
             Pose, '/turtle2/pose', self.on_turtle2_pose, 10
         )
-        # 실습 2: turtle2 속도 토픽을 선택합니다.
-        # 설명: 아래는 완성된 코드입니다.
-        # 함께 작성할 코드:
-        self.publisher = self.create_publisher(Twist, '/turtle2/cmd_vel', 10)
-        # 실습 3: 거리 제어 타이머를 만듭니다.
-        # 설명: 아래는 완성된 코드입니다.
-        # 함께 작성할 코드:
+        self.publisher = self.create_publisher(
+            Twist, '/turtle2/cmd_vel', 10
+        )
         self.timer = self.create_timer(0.1, self.control_turtle2)
 
     def on_turtle1_pose(self, message):
@@ -64,20 +59,28 @@ class DistanceGuard(Node):
         """거리 조건에 따라 turtle2 속도를 발행합니다."""
         if self.turtle1_pose is None or self.turtle2_pose is None:
             return
+
         distance = distance_between(self.turtle1_pose, self.turtle2_pose)
         stopped = should_stop(distance, self.safe_distance)
         message = Twist()
+
         if not stopped:
             now = time.monotonic()
             if now >= self.next_turn_change:
-                self.turn_speed = random.choice([-0.8, -0.4, 0.0, 0.4, 0.8])
+                self.turn_speed = random.choice(
+                    [-0.8, -0.4, 0.0, 0.4, 0.8]
+                )
                 self.next_turn_change = now + 2.0
             message.linear.x = 1.0
             message.angular.z = self.turn_speed
+
         if stopped != self.was_stopped:
             state = '정지' if stopped else '이동'
-            self.get_logger().info(f'turtle2 {state}: 거리={distance:.2f}')
+            self.get_logger().info(
+                f'turtle2 {state}: 거리={distance:.2f}'
+            )
             self.was_stopped = stopped
+
         self.publisher.publish(message)
 
 
@@ -90,8 +93,6 @@ def main(args=None):
     except KeyboardInterrupt:
         pass
     finally:
-        if rclpy.ok():
-            node.publisher.publish(Twist())
         node.destroy_node()
         rclpy.try_shutdown()
 

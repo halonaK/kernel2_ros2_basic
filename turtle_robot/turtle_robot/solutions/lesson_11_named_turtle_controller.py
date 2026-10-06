@@ -11,19 +11,10 @@ class NamedTurtleController(Node):
 
     def __init__(self):
         super().__init__('lesson_11_named_turtle_controller')
-        # 실습 1: 상대 발행 토픽 이름을 채웁니다.
-        # 설명: 아래는 완성된 코드입니다.
-        # 함께 작성할 코드:
         self.publisher = self.create_publisher(Twist, 'cmd_vel', 10)
-        # 실습 2: 상대 구독 토픽 이름을 채웁니다.
-        # 설명: 아래는 완성된 코드입니다.
-        # 함께 작성할 코드:
         self.subscription = self.create_subscription(
             Pose, 'pose', self.on_pose, 10
         )
-        # 실습 3: 속도 타이머를 만듭니다.
-        # 설명: 아래는 완성된 코드입니다.
-        # 함께 작성할 코드:
         self.timer = self.create_timer(0.1, self.publish_velocity)
 
     def publish_velocity(self):
@@ -48,8 +39,6 @@ def main(args=None):
     except KeyboardInterrupt:
         pass
     finally:
-        if rclpy.ok():
-            node.publisher.publish(Twist())
         node.destroy_node()
         rclpy.try_shutdown()
 

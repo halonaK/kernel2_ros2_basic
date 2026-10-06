@@ -3,7 +3,8 @@
 from setuptools import find_packages, setup
 
 package_name = 'turtle_robot'
-lessons = [
+
+exercise_lessons = [
     'lesson_01_pose_subscriber',
     'lesson_02_color_subscriber',
     'lesson_03_pose_color_subscriber',
@@ -14,6 +15,22 @@ lessons = [
     'lesson_08_region_pen_client',
     'lesson_09_teleport_client',
     'lesson_10_spawn_client',
+    'lesson_11_named_turtle_controller',
+    'lesson_12_distance_guard',
+]
+
+solution_lessons = [
+    'lesson_01_pose_subscriber',
+    'lesson_02_color_subscriber',
+    'lesson_03_pose_color_subscriber',
+    'lesson_04_pose_color_velocity_subscriber',
+    'lesson_05_cmd_vel_publisher',
+    'lesson_05_growing_circle',
+    'lesson_06_turtle_cmd_and_pose',
+    'lesson_07_multi_thread',
+    'lesson_08_teleport_client',
+    'lesson_09_spawn_client',
+    'lesson_10_region_pen_client',
     'lesson_11_named_turtle_controller',
     'lesson_12_distance_guard',
 ]
@@ -37,10 +54,10 @@ setup(
     entry_points={
         'console_scripts': [
             f'{lesson} = turtle_robot.exercises.{lesson}:main'
-            for lesson in lessons
+            for lesson in exercise_lessons
         ] + [
             f'{lesson}_solution = turtle_robot.solutions.{lesson}:main'
-            for lesson in lessons
+            for lesson in solution_lessons
         ],
     },
 )
