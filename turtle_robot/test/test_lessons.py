@@ -30,10 +30,9 @@ EXERCISE_LESSONS = [
     'lesson_04_pose_color_velocity_subscriber',
     'lesson_05_cmd_vel_publisher',
     'lesson_06_turtle_cmd_and_pose',
-    'lesson_07_multi_thread',
-    'lesson_08_region_pen_client',
-    'lesson_09_teleport_client',
-    'lesson_10_spawn_client',
+    'lesson_08_teleport_client',
+    'lesson_09_spawn_client',
+    'lesson_10_region_pen_client',
     'lesson_11_named_turtle_controller',
     'lesson_12_distance_guard',
 ]
@@ -64,13 +63,15 @@ def test_solution_import(module):
 
 @pytest.mark.parametrize('module', EXERCISE_LESSONS)
 def test_starter(module):
-    """미완성 실습은 한국어 안내로 종료하고 문법이 유효해야 합니다."""
+    """모든 학생용 파일은 오류 없이 import할 수 있어야 합니다."""
     lesson = importlib.import_module(f'turtle_robot.exercises.{module}')
     source = Path(lesson.__file__).read_text()
+
     for number in range(1, 4):
         assert f'# 실습 {number}:' in source
-    with pytest.raises(SystemExit, match='실습 1~3'):
-        lesson.main()
+
+    compile(source, str(lesson.__file__), 'exec')
+    assert 'raise SystemExit' not in source
 
 
 def test_console_scripts():
@@ -88,7 +89,7 @@ def test_console_scripts():
         for module in SOLUTION_LESSONS
     ]
 
-    assert len(actual) == 25
+    assert len(actual) == 24
     assert set(actual) == set(expected)
 
     for entry in actual:

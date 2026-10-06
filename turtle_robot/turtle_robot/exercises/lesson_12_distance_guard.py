@@ -1,102 +1,71 @@
-"""두 거북이 사이 거리를 보고 turtle2를 멈추는 예제입니다."""
+"""두 거북이의 거리를 이용한 충돌 방지 실습입니다."""
 
 import math
-import random
-import time
+import random  # noqa: F401
 
-from geometry_msgs.msg import Twist
+from geometry_msgs.msg import Twist  # noqa: F401
 import rclpy
 from rclpy.node import Node
-from turtlesim.msg import Pose
+from turtlesim.msg import Pose  # noqa: F401
+
+
+SAFE_DISTANCE = 2.0
 
 
 def distance_between(first_pose, second_pose):
-    """두 위치 사이의 유클리드 거리를 계산합니다."""
+    """두 거북이 사이의 거리를 계산합니다."""
     return math.hypot(
-        first_pose.x - second_pose.x, first_pose.y - second_pose.y
+        first_pose.x - second_pose.x,
+        first_pose.y - second_pose.y,
     )
 
 
-def should_stop(distance, safe_distance):
-    """안전거리보다 가까우면 정지 여부를 반환합니다."""
-    # 실습 1: 안전거리 정지 조건을 작성합니다.
-    # 설명: 빈칸을 채우고 아래 코드의 주석을 해제하세요.
-    # 함께 작성할 코드:
-    # return distance ____ safe_distance
-    pass
-
-
 class DistanceGuard(Node):
-    """turtle2만 안전거리 안에서 정지시킵니다."""
+    """turtle2가 turtle1에 가까워지면 멈추는 노드입니다."""
 
     def __init__(self):
         super().__init__('lesson_12_distance_guard')
-        self.declare_parameter('safe_distance', 2.0)
-        self.safe_distance = float(self.get_parameter('safe_distance').value)
         self.turtle1_pose = None
         self.turtle2_pose = None
-        self.turn_speed = 0.0
-        self.next_turn_change = 0.0
-        self.was_stopped = None
-        self.turtle1_subscription = self.create_subscription(
-            Pose, '/turtle1/pose', self.on_turtle1_pose, 10
-        )
-        self.turtle2_subscription = self.create_subscription(
-            Pose, '/turtle2/pose', self.on_turtle2_pose, 10
-        )
-        # 실습 2: turtle2 속도 토픽을 선택합니다.
-        # 설명: 빈칸을 채우고 아래 코드의 주석을 해제하세요.
-        # 함께 작성할 코드:
-        # self.publisher = self.create_publisher(Twist, '____', 10)
-        pass
-        # 실습 3: 거리 제어 타이머를 만듭니다.
-        # 설명: 빈칸을 채우고 아래 코드의 주석을 해제하세요.
-        # 함께 작성할 코드:
-        # self.timer = self.create_timer(____, ____)
-        pass
+
+        # 실습 1: /turtle1/pose를 구독하세요.
+        # self.turtle1_subscription =
+
+        # 실습 2: /turtle2/pose를 구독하세요.
+        # self.turtle2_subscription =
+
+        # 실습 3: /turtle2/cmd_vel에 Twist를 발행하세요.
+        # self.publisher =
+
+        # 실습 4: control_turtle2를 0.1초마다 실행하세요.
+        # self.timer =
 
     def on_turtle1_pose(self, message):
-        """turtle1 위치를 저장합니다."""
-        self.turtle1_pose = message
+        """turtle1의 최근 위치를 저장합니다."""
+        # 실습 5: 받은 메시지를 self.turtle1_pose에 저장하세요.
+        pass
 
     def on_turtle2_pose(self, message):
-        """turtle2 위치를 저장합니다."""
-        self.turtle2_pose = message
+        """turtle2의 최근 위치를 저장합니다."""
+        # 실습 6: 받은 메시지를 self.turtle2_pose에 저장하세요.
+        pass
 
     def control_turtle2(self):
-        """거리 조건에 따라 turtle2 속도를 발행합니다."""
-        if self.turtle1_pose is None or self.turtle2_pose is None:
-            return
-        distance = distance_between(self.turtle1_pose, self.turtle2_pose)
-        stopped = should_stop(distance, self.safe_distance)
-        message = Twist()
-        if not stopped:
-            now = time.monotonic()
-            if now >= self.next_turn_change:
-                self.turn_speed = random.choice([-0.8, -0.4, 0.0, 0.4, 0.8])
-                self.next_turn_change = now + 2.0
-            message.linear.x = 1.0
-            message.angular.z = self.turn_speed
-        if stopped != self.was_stopped:
-            state = '정지' if stopped else '이동'
-            self.get_logger().info(f'turtle2 {state}: 거리={distance:.2f}')
-            self.was_stopped = stopped
-        self.publisher.publish(message)
+        """거리에 따라 turtle2의 속도를 발행합니다."""
+        # 실습 7: 가까우면 멈추고, 멀면 임의 방향으로 움직이게 하세요.
+        pass
 
 
 def main(args=None):
     """노드를 실행합니다."""
-    # 실습을 모두 완성한 뒤 아래 안내 줄을 삭제하세요.
-    raise SystemExit('실습 1~3을 완성하고 안내 줄을 삭제하세요.')
     rclpy.init(args=args)
     node = DistanceGuard()
+
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:
         pass
     finally:
-        if rclpy.ok():
-            node.publisher.publish(Twist())
         node.destroy_node()
         rclpy.try_shutdown()
 

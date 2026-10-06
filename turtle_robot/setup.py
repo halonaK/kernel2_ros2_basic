@@ -11,10 +11,9 @@ exercise_lessons = [
     'lesson_04_pose_color_velocity_subscriber',
     'lesson_05_cmd_vel_publisher',
     'lesson_06_turtle_cmd_and_pose',
-    'lesson_07_multi_thread',
-    'lesson_08_region_pen_client',
-    'lesson_09_teleport_client',
-    'lesson_10_spawn_client',
+    'lesson_08_teleport_client',
+    'lesson_09_spawn_client',
+    'lesson_10_region_pen_client',
     'lesson_11_named_turtle_controller',
     'lesson_12_distance_guard',
 ]
