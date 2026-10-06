@@ -64,7 +64,7 @@ ros2 run turtlesim turtlesim_node --ros-args -r /turtle1/color_sensor:=/turtlesi
 ros2 run turtlesim turtle_teleop_key
 ```
 
-터미널 C: [수업 순서 및 명령표](docs/lessons.md)의 학생 또는 완성 명령을 실행합니다.
+터미널 C: 수업에서 안내한 실습 또는 완성 명령을 실행합니다.
 학생 코드의 `실습 1~3` 주석을 풀고 빈칸을 완성한 뒤 `main()`의 안내용
 `raise SystemExit(...)` 줄을 삭제합니다. `pass`는 삭제해도 됩니다.
 실행 전에는 짧은 한국어 안내로 종료합니다. 완성 답은 별도 solutions 파일에 있습니다.
