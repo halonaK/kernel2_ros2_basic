@@ -7,7 +7,7 @@ from turtlesim.srv import SetPen
 
 
 def region_for_x(x):
-    """x 좌표를 왼쪽 또는 오른쪽 영역으로 구분합니다."""
+    """X 좌표를 왼쪽 또는 오른쪽 영역으로 구분합니다."""
     return 'left' if x < 5.5 else 'right'
 
 
