@@ -1,7 +1,7 @@
 # turtle_robot: ROS 2 기초 실습
 
-Ubuntu 24.04와 ROS 2 Jazzy용 수업입니다. `solutions` 브랜치에는 학생 실습과
-완성 코드가 함께 있으며, Challenge는 완성본에서만 제공합니다.
+Ubuntu 24.04와 ROS 2 Jazzy용 수업입니다. 이 브랜치에는 완성 코드와
+Launch, config, Challenge만 제공합니다.
 
 ## 수업 순서
 
@@ -75,13 +75,11 @@ ros2 run turtlesim turtlesim_node --ros-args -r /turtle1/color_sensor:=/turtlesi
 ros2 run turtlesim turtle_teleop_key
 ```
 
-터미널 C: 수업에서 안내한 실습 또는 완성 명령을 실행합니다.
-학생 파일의 `실습 1~3`을 직접 작성하고 `pass`가 필요 없으면 삭제합니다.
-완성 답은 `solutions` 폴더에 있습니다.
+터미널 C: 수업에서 안내한 완성 명령을 실행합니다.
 
 `lesson2_1` ~ `lesson2_4`는 turtle1 속도를 자동 발행하므로 터미널 B를 중지하세요.
 여러 노드가 `/turtle1/cmd_vel`에 서로 다른 명령을 동시에 보내면 움직임이 충돌합니다.
-학생 버전과 완성 버전도 동시에 실행하지 않습니다.
+같은 토픽에 명령을 보내는 완성 예제를 동시에 실행하지 않습니다.
 
 ## 완성본 실행 이름
 

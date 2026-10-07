@@ -6,21 +6,6 @@ from setuptools import find_packages, setup
 
 package_name = 'turtle_robot'
 
-exercise_lessons = [
-    'lesson1_1_pose_subscriber',
-    'lesson1_2_color_subscriber',
-    'lesson1_3_pose_color_subscriber',
-    'lesson1_4_pose_color_velocity_subscriber',
-    'lesson2_1_cmd_vel_publisher',
-    'lesson2_2_growing_circle',
-    'lesson2_3_turtle_cmd_and_pose',
-    'lesson2_4_multi_thread',
-    'lesson3_1_teleport_client',
-    'lesson3_2_spawn_client',
-    'lesson3_3_region_pen_client',
-    'lesson4_1_cmd_vel_parameters',
-]
-
 solution_lessons = [
     'lesson1_1_pose_subscriber',
     'lesson1_2_color_subscriber',
@@ -58,9 +43,6 @@ setup(
     license='Apache-2.0',
     entry_points={
         'console_scripts': [
-            f'{lesson} = turtle_robot.exercises.{lesson}:main'
-            for lesson in exercise_lessons
-        ] + [
             f'{lesson}_solution = turtle_robot.solutions.{lesson}:main'
             for lesson in solution_lessons
         ] + [
