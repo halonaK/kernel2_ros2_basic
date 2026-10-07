@@ -5,7 +5,7 @@ ROS 2 Jazzy와 turtlesim으로 배우는 초보자용 실습 저장소입니다.
 ## 브랜치
 
 - `main`: 학생 실습 파일만 제공
-- `solutions`: 학생 실습, 완성 코드, Launch, config, Challenge 제공
+- `solutions`: 완성 코드, Launch, config, Challenge 제공
 
 학생용:
 
