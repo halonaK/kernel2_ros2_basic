@@ -8,49 +8,52 @@ from unittest.mock import Mock, patch
 
 import pytest
 
-from turtle_robot.solutions.lesson_06_turtle_cmd_and_pose import (
-    is_near_wall,
-)
-from turtle_robot.solutions.lesson_10_region_pen_client import (
-    color_for_region,
-    region_for_x,
-    RegionPenClient,
-)
-from turtle_robot.solutions.lesson_12_distance_guard import (
+from turtle_robot.challenges.challenge_01_distance_guard import (
     distance_between,
     DistanceGuard,
     should_stop,
 )
+from turtle_robot.solutions.lesson2_2_growing_circle import (
+    GrowingCirclePublisher,
+)
+from turtle_robot.solutions.lesson2_3_turtle_cmd_and_pose import (
+    is_near_wall,
+)
+from turtle_robot.solutions.lesson3_3_region_pen_client import (
+    color_for_region,
+    region_for_x,
+    RegionPenClient,
+)
 
 
 EXERCISE_LESSONS = [
-    'lesson_01_pose_subscriber',
-    'lesson_02_color_subscriber',
-    'lesson_03_pose_color_subscriber',
-    'lesson_04_pose_color_velocity_subscriber',
-    'lesson_05_cmd_vel_publisher',
-    'lesson_06_turtle_cmd_and_pose',
-    'lesson_08_teleport_client',
-    'lesson_09_spawn_client',
-    'lesson_10_region_pen_client',
-    'lesson_11_named_turtle_controller',
-    'lesson_12_distance_guard',
+    'lesson1_1_pose_subscriber',
+    'lesson1_2_color_subscriber',
+    'lesson1_3_pose_color_subscriber',
+    'lesson1_4_pose_color_velocity_subscriber',
+    'lesson2_1_cmd_vel_publisher',
+    'lesson2_2_growing_circle',
+    'lesson2_3_turtle_cmd_and_pose',
+    'lesson2_4_multi_thread',
+    'lesson3_1_teleport_client',
+    'lesson3_2_spawn_client',
+    'lesson3_3_region_pen_client',
+    'lesson4_1_cmd_vel_parameters',
 ]
 
 SOLUTION_LESSONS = [
-    'lesson_01_pose_subscriber',
-    'lesson_02_color_subscriber',
-    'lesson_03_pose_color_subscriber',
-    'lesson_04_pose_color_velocity_subscriber',
-    'lesson_05_cmd_vel_publisher',
-    'lesson_05_growing_circle',
-    'lesson_06_turtle_cmd_and_pose',
-    'lesson_07_multi_thread',
-    'lesson_08_teleport_client',
-    'lesson_09_spawn_client',
-    'lesson_10_region_pen_client',
-    'lesson_11_named_turtle_controller',
-    'lesson_12_distance_guard',
+    'lesson1_1_pose_subscriber',
+    'lesson1_2_color_subscriber',
+    'lesson1_3_pose_color_subscriber',
+    'lesson1_4_pose_color_velocity_subscriber',
+    'lesson2_1_cmd_vel_publisher',
+    'lesson2_2_growing_circle',
+    'lesson2_3_turtle_cmd_and_pose',
+    'lesson2_4_multi_thread',
+    'lesson3_1_teleport_client',
+    'lesson3_2_spawn_client',
+    'lesson3_3_region_pen_client',
+    'lesson4_1_cmd_vel_parameters',
 ]
 
 
@@ -87,9 +90,12 @@ def test_console_scripts():
     ] + [
         f'{module}_solution = turtle_robot.solutions.{module}:main'
         for module in SOLUTION_LESSONS
+    ] + [
+        'challenge_01_distance_guard_solution = '
+        'turtle_robot.challenges.challenge_01_distance_guard:main'
     ]
 
-    assert len(actual) == 24
+    assert len(actual) == 25
     assert set(actual) == set(expected)
 
     for entry in actual:
@@ -108,6 +114,20 @@ def test_wall_boundary(x, y, expected):
     """화면 가장자리에서는 회전해야 합니다."""
     pose = SimpleNamespace(x=x, y=y)
     assert is_near_wall(pose) is expected
+
+
+def test_growing_circle_has_no_speed_cap():
+    """선속도는 이전 최대값 2.0을 지나서도 계속 증가해야 합니다."""
+    node = SimpleNamespace(
+        linear_speed=1.99,
+        angular_speed=1.0,
+        publisher=Mock(),
+    )
+
+    for _ in range(10):
+        GrowingCirclePublisher.publish_velocity(node)
+
+    assert node.linear_speed > 2.0
 
 
 @pytest.mark.parametrize('first,second,expected', [

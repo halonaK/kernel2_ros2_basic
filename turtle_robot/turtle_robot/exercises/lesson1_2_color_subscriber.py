@@ -9,7 +9,7 @@ class ColorSubscriber(Node):
     """RGB 색상을 출력하는 노드입니다."""
 
     def __init__(self):
-        super().__init__('lesson_02_color_subscriber')
+        super().__init__('lesson1_2_color_subscriber')
 
         # 실습 1: /turtlesim/color_sensor를 구독하세요.
         # self.subscription =

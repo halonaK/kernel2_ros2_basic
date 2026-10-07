@@ -9,7 +9,7 @@ class PoseSubscriber(Node):
     """거북이 위치를 출력하는 노드입니다."""
 
     def __init__(self):
-        super().__init__('lesson_01_pose_subscriber')
+        super().__init__('lesson1_1_pose_subscriber')
 
         # 실습 1: /turtle1/pose를 구독하는 Subscription을 만드세요.
         # self.subscription =

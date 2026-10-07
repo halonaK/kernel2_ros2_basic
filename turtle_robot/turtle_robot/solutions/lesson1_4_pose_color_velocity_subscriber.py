@@ -10,7 +10,7 @@ class PoseColorVelocitySubscriber(Node):
     """세 가지 메시지를 1초마다 출력합니다."""
 
     def __init__(self):
-        super().__init__('lesson_04_pose_color_velocity_subscriber')
+        super().__init__('lesson1_4_pose_color_velocity_subscriber')
         self.pose = None
         self.color = None
         self.velocity = None

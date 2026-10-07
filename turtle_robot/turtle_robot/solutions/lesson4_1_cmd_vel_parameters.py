@@ -1,31 +1,34 @@
-"""10 Hz로 전진 속도를 발행하는 완성 예제입니다."""
+"""Parameter로 거북이의 선속도와 각속도를 설정하는 예제입니다."""
 
 from geometry_msgs.msg import Twist
 import rclpy
 from rclpy.node import Node
 
 
-class CmdVelPublisher(Node):
-    """거북이를 직진시키는 속도 발행자입니다."""
+class CmdVelParameterPublisher(Node):
+    """현재 Parameter 값을 사용해 속도를 발행합니다."""
 
     def __init__(self):
-        super().__init__('lesson_05_cmd_vel_publisher')
+        super().__init__('lesson4_1_cmd_vel_parameters')
+        self.declare_parameter('linear_speed', 1.0)
+        self.declare_parameter('angular_speed', 0.0)
         self.publisher = self.create_publisher(
             Twist, '/turtle1/cmd_vel', 10
         )
         self.timer = self.create_timer(0.1, self.publish_velocity)
 
     def publish_velocity(self):
-        """전진 속도를 발행합니다."""
+        """현재 설정된 속도를 읽어 발행합니다."""
         message = Twist()
-        message.linear.x = 1.0
+        message.linear.x = self.get_parameter('linear_speed').value
+        message.angular.z = self.get_parameter('angular_speed').value
         self.publisher.publish(message)
 
 
 def main(args=None):
     """노드를 실행합니다."""
     rclpy.init(args=args)
-    node = CmdVelPublisher()
+    node = CmdVelParameterPublisher()
     try:
         rclpy.spin(node)
     except KeyboardInterrupt:

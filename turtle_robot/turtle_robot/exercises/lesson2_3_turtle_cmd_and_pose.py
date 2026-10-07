@@ -10,7 +10,7 @@ class TurtleCmdAndPose(Node):
     """속도를 발행하고 위치를 구독하는 노드입니다."""
 
     def __init__(self):
-        super().__init__('lesson_06_turtle_cmd_and_pose')
+        super().__init__('lesson2_3_turtle_cmd_and_pose')
         self.pose = None
 
         # 실습 1: /turtle1/cmd_vel에 Twist를 발행하세요.

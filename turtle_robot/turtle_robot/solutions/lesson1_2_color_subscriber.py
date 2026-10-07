@@ -9,7 +9,7 @@ class ColorSubscriber(Node):
     """RGB 색상을 출력합니다."""
 
     def __init__(self):
-        super().__init__('lesson_02_color_subscriber')
+        super().__init__('lesson1_2_color_subscriber')
         # 실습 1: 메시지 타입과 토픽 이름을 선택합니다.
         # 설명: 구독자를 생성합니다.
         # 함께 작성할 코드:

@@ -29,7 +29,7 @@ class DistanceGuard(Node):
     """turtle2만 안전거리 안에서 정지시킵니다."""
 
     def __init__(self):
-        super().__init__('lesson_12_distance_guard')
+        super().__init__('challenge_01_distance_guard')
         self.safe_distance = SAFE_DISTANCE
         self.turtle1_pose = None
         self.turtle2_pose = None

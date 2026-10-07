@@ -20,7 +20,7 @@ class RegionPenClient(Node):
     """영역이 바뀔 때 펜 색상 서비스를 호출합니다."""
 
     def __init__(self):
-        super().__init__('lesson_10_region_pen_client')
+        super().__init__('lesson3_3_region_pen_client')
         self.client = self.create_client(SetPen, '/turtle1/set_pen')
         self.subscription = self.create_subscription(
             Pose, '/turtle1/pose', self.on_pose, 10

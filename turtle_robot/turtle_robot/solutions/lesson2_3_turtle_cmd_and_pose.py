@@ -20,7 +20,7 @@ class TurtleCmdAndPose(Node):
     """거북이 위치를 구독하며 이동 명령을 보냅니다."""
 
     def __init__(self):
-        super().__init__('lesson_06_turtle_cmd_and_pose')
+        super().__init__('lesson2_3_turtle_cmd_and_pose')
         self.publisher = self.create_publisher(
             Twist, '/turtle1/cmd_vel', 10
         )

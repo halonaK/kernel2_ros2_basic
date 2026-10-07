@@ -1,7 +1,18 @@
 # turtle_robot: ROS 2 기초 실습
 
-Ubuntu 24.04와 ROS 2 Jazzy용 수업입니다. 학생 코드는 `turtle_robot/exercises/`,
-완성 코드는 `turtle_robot/solutions/`에 있습니다. 각 폴더의 같은 파일이 한 쌍입니다.
+Ubuntu 24.04와 ROS 2 Jazzy용 수업입니다. `solutions` 브랜치에는 학생 실습과
+완성 코드가 함께 있으며, Challenge는 완성본에서만 제공합니다.
+
+## 수업 순서
+
+| 단원 | 주제 | 파일 |
+| --- | --- | --- |
+| 1 | Topic Subscribe | `lesson1_1` ~ `lesson1_4` |
+| 2 | Topic Publish | `lesson2_1` ~ `lesson2_4` |
+| 3 | Service | `lesson3_1` ~ `lesson3_3` |
+| 4 | Parameter | `lesson4_1` |
+| 5 | Launch | `lesson5_1` ~ `lesson5_3` |
+| Challenge | 두 거북이 거리 안전 제어 | `challenge_01` |
 
 ## 환경 준비
 
@@ -39,8 +50,8 @@ ament_pep257 src/turtle_robot
 
 일반 테스트는 실행 중인 turtlesim이나 ROS 그래프를 요구하지 않습니다.
 ROS 메시지를 import하므로 Jazzy 환경은 먼저 source해야 합니다.
-예전 명령 대신 `lesson_` 명령을 사용합니다. 기존 install 폴더에는 예전 실행 파일이
-남을 수 있으므로 `ros2 pkg executables turtle_robot`에서 확인하세요.
+기존 install 폴더에는 예전 실행 파일이 남을 수 있으므로
+`ros2 pkg executables turtle_robot`에서 현재 명령을 확인하세요.
 
 ## 터미널 구성
 
@@ -65,15 +76,23 @@ ros2 run turtlesim turtle_teleop_key
 ```
 
 터미널 C: 수업에서 안내한 실습 또는 완성 명령을 실행합니다.
-학생 코드의 `실습 1~3` 주석을 풀고 빈칸을 완성한 뒤 `main()`의 안내용
-`raise SystemExit(...)` 줄을 삭제합니다. `pass`는 삭제해도 됩니다.
-실행 전에는 짧은 한국어 안내로 종료합니다. 완성 답은 별도 solutions 파일에 있습니다.
-의도적으로 남긴 학생 import의 `# noqa: F401`은 미완성 상태의 미사용 import만 허용합니다.
+학생 파일의 `실습 1~3`을 직접 작성하고 `pass`가 필요 없으면 삭제합니다.
+완성 답은 `solutions` 폴더에 있습니다.
 
-05, 06, 07은 turtle1 속도를 자동 발행하므로 터미널 B를 중지하세요.
+`lesson2_1` ~ `lesson2_4`는 turtle1 속도를 자동 발행하므로 터미널 B를 중지하세요.
 여러 노드가 `/turtle1/cmd_vel`에 서로 다른 명령을 동시에 보내면 움직임이 충돌합니다.
-학생 버전과 완성 버전도 동시에 실행하지 않습니다. 11과 12 역시 turtle2 제어를
-동시에 실행하지 않습니다. 12에서는 turtle1 키보드 제어를 유지합니다.
+학생 버전과 완성 버전도 동시에 실행하지 않습니다.
+
+## 완성본 실행 이름
+
+완성 코드는 학생 실행 이름 뒤에 `_solution`을 붙입니다.
+
+```bash
+ros2 run turtle_robot lesson2_1_cmd_vel_publisher_solution
+ros2 run turtle_robot lesson3_1_teleport_client_solution
+ros2 run turtle_robot lesson4_1_cmd_vel_parameters_solution
+ros2 launch turtle_robot lesson5_1_turtlesim_teleop.launch.py
+```
 
 ## core20 / GLIBC_PRIVATE 문제
 

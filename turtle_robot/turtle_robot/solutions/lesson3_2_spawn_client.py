@@ -9,7 +9,7 @@ class SpawnClient(Node):
     """spawn 서비스를 한 번 호출합니다."""
 
     def __init__(self):
-        super().__init__('lesson_09_spawn_client')
+        super().__init__('lesson3_2_spawn_client')
         self.client = self.create_client(Spawn, '/spawn')
 
     def send_request(self):

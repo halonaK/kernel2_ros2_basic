@@ -9,7 +9,7 @@ class SpawnClient(Node):
     """새 거북이 생성을 요청하는 노드입니다."""
 
     def __init__(self):
-        super().__init__('lesson_09_spawn_client')
+        super().__init__('lesson3_2_spawn_client')
 
         # 실습 1: /spawn의 Client를 만드세요.
         # self.client =

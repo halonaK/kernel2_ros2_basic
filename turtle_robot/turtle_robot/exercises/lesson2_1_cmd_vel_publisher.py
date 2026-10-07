@@ -9,7 +9,7 @@ class CmdVelPublisher(Node):
     """거북이 속도를 발행하는 노드입니다."""
 
     def __init__(self):
-        super().__init__('lesson_05_cmd_vel_publisher')
+        super().__init__('lesson2_1_cmd_vel_publisher')
 
         # 실습 1: /turtle1/cmd_vel에 Twist를 발행하는 Publisher를 만드세요.
         # self.publisher =

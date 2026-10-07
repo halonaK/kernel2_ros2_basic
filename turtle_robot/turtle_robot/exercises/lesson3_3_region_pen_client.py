@@ -10,7 +10,7 @@ class RegionPenClient(Node):
     """왼쪽과 오른쪽 영역의 펜 색상을 바꾸는 노드입니다."""
 
     def __init__(self):
-        super().__init__('lesson_10_region_pen_client')
+        super().__init__('lesson3_3_region_pen_client')
         self.current_region = None
 
         # 실습 1: /turtle1/set_pen의 Client를 만드세요.

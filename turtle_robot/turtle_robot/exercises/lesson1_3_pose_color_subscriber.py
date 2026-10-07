@@ -9,7 +9,7 @@ class PoseColorSubscriber(Node):
     """위치와 색상을 함께 출력하는 노드입니다."""
 
     def __init__(self):
-        super().__init__('lesson_03_pose_color_subscriber')
+        super().__init__('lesson1_3_pose_color_subscriber')
         self.pose = None
         self.color = None
 

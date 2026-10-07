@@ -3,8 +3,8 @@
 import rclpy
 from rclpy.executors import MultiThreadedExecutor
 
-from turtle_robot.solutions.lesson_01_pose_subscriber import PoseSubscriber
-from turtle_robot.solutions.lesson_05_cmd_vel_publisher import CmdVelPublisher
+from turtle_robot.solutions.lesson1_1_pose_subscriber import PoseSubscriber
+from turtle_robot.solutions.lesson2_1_cmd_vel_publisher import CmdVelPublisher
 
 
 def main(args=None):

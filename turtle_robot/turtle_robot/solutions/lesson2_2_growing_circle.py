@@ -9,7 +9,7 @@ class GrowingCirclePublisher(Node):
     """전진 속도를 증가시켜 원의 반지름을 키웁니다."""
 
     def __init__(self):
-        super().__init__('lesson_05_growing_circle')
+        super().__init__('lesson2_2_growing_circle')
         self.publisher = self.create_publisher(
             Twist, '/turtle1/cmd_vel', 10
         )
@@ -23,7 +23,7 @@ class GrowingCirclePublisher(Node):
         message.linear.x = self.linear_speed
         message.angular.z = self.angular_speed
         self.publisher.publish(message)
-        self.linear_speed = min(self.linear_speed + 0.005, 2.0)
+        self.linear_speed += 0.002
 
 
 def main(args=None):

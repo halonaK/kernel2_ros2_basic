@@ -9,7 +9,7 @@ class PoseSubscriber(Node):
     """거북이 위치를 출력합니다."""
 
     def __init__(self):
-        super().__init__('lesson_01_pose_subscriber')
+        super().__init__('lesson1_1_pose_subscriber')
         # 실습 1: 메시지 타입과 토픽 이름을 선택합니다.
         # 설명: 구독자를 생성합니다.
         # 함께 작성할 코드:

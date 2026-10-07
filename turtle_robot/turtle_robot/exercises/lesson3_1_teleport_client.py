@@ -9,7 +9,7 @@ class TeleportClient(Node):
     """순간이동 서비스를 요청하는 노드입니다."""
 
     def __init__(self):
-        super().__init__('lesson_08_teleport_client')
+        super().__init__('lesson3_1_teleport_client')
 
         # 실습 1: /turtle1/teleport_absolute의 Client를 만드세요.
         # self.client =
