@@ -1,4 +1,0 @@
-/lesson4_1_cmd_vel_parameters:
-  ros__parameters:
-    linear_speed: 1.0
-    angular_speed: 0.5

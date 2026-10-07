@@ -1,7 +1,7 @@
 # turtle_robot: ROS 2 기초 실습
 
-Ubuntu 24.04와 ROS 2 Jazzy용 수업입니다. `solutions` 브랜치에는 학생 실습과
-완성 코드가 함께 있으며, Challenge는 완성본에서만 제공합니다.
+Ubuntu 24.04와 ROS 2 Jazzy용 수업입니다. 현재 `main` 브랜치에는 학생이 직접
+완성할 실습 파일만 있습니다. 정답과 Challenge는 `solutions` 브랜치에 있습니다.
 
 ## 수업 순서
 
@@ -11,8 +11,8 @@ Ubuntu 24.04와 ROS 2 Jazzy용 수업입니다. `solutions` 브랜치에는 학�
 | 2 | Topic Publish | `lesson2_1` ~ `lesson2_4` |
 | 3 | Service | `lesson3_1` ~ `lesson3_3` |
 | 4 | Parameter | `lesson4_1` |
-| 5 | Launch | `lesson5_1` ~ `lesson5_3` |
-| Challenge | 두 거북이 거리 안전 제어 | `challenge_01` |
+| 5 | Launch(수업 중 생성) | `lesson5_1` ~ `lesson5_3` |
+| Challenge(`solutions` 전용) | 두 거북이 거리 안전 제어 | `challenge_01` |
 
 ## 환경 준비
 
@@ -75,24 +75,13 @@ ros2 run turtlesim turtlesim_node --ros-args -r /turtle1/color_sensor:=/turtlesi
 ros2 run turtlesim turtle_teleop_key
 ```
 
-터미널 C: 수업에서 안내한 실습 또는 완성 명령을 실행합니다.
+터미널 C: 수업에서 안내한 실습 명령을 실행합니다.
 학생 파일의 `실습 1~3`을 직접 작성하고 `pass`가 필요 없으면 삭제합니다.
-완성 답은 `solutions` 폴더에 있습니다.
+완성 답은 GitHub의 `solutions` 브랜치에서 확인합니다.
 
 `lesson2_1` ~ `lesson2_4`는 turtle1 속도를 자동 발행하므로 터미널 B를 중지하세요.
 여러 노드가 `/turtle1/cmd_vel`에 서로 다른 명령을 동시에 보내면 움직임이 충돌합니다.
-학생 버전과 완성 버전도 동시에 실행하지 않습니다.
-
-## 완성본 실행 이름
-
-완성 코드는 학생 실행 이름 뒤에 `_solution`을 붙입니다.
-
-```bash
-ros2 run turtle_robot lesson2_1_cmd_vel_publisher_solution
-ros2 run turtle_robot lesson3_1_teleport_client_solution
-ros2 run turtle_robot lesson4_1_cmd_vel_parameters_solution
-ros2 launch turtle_robot lesson5_1_turtlesim_teleop.launch.py
-```
+같은 토픽에 명령을 보내는 실습을 동시에 실행하지 않습니다.
 
 ## core20 / GLIBC_PRIVATE 문제
 
