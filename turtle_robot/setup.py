@@ -39,8 +39,8 @@ setup(
     license='Apache-2.0',
     entry_points={
         'console_scripts': [
-            f'{lesson} = turtle_robot.exercises.{lesson}:main'
-            for lesson in exercise_lessons
+            # f'{lesson} = turtle_robot.exercises.{lesson}:main'
+            # for lesson in exercise_lessons
         ],
     },
 )
