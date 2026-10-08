@@ -1,7 +1,8 @@
 # turtle_robot: ROS 2 기초 실습
 
-Ubuntu 24.04와 ROS 2 Jazzy용 수업입니다. 현재 `main` 브랜치에는 학생이 직접
-완성할 실습 파일만 있습니다. 정답과 Challenge는 `solutions` 브랜치에 있습니다.
+Ubuntu 24.04와 ROS 2 Jazzy용 수업입니다. 
+현재 `main` 브랜치에는 학생이 직접 완성할 실습 파일만 있습니다. 
+정답과 Challenge는 `solutions` 브랜치에 있습니다.
 
 ## 수업 순서
 
@@ -48,45 +49,5 @@ ament_flake8 src/turtle_robot
 ament_pep257 src/turtle_robot
 ```
 
-일반 테스트는 실행 중인 turtlesim이나 ROS 그래프를 요구하지 않습니다.
-ROS 메시지를 import하므로 Jazzy 환경은 먼저 source해야 합니다.
-기존 install 폴더에는 예전 실행 파일이 남을 수 있으므로
-`ros2 pkg executables turtle_robot`에서 현재 명령을 확인하세요.
 
-## 터미널 구성
 
-새 터미널마다 다음 두 줄을 실행합니다.
-
-```bash
-source /opt/ros/jazzy/setup.bash
-source ~/ros2_ws/install/setup.bash
-```
-
-터미널 A: 시뮬레이터를 실행합니다. 기본 색상 토픽 `/turtle1/color_sensor`를
-이번 수업에서 사용하는 `/turtlesim/color_sensor`로 바꿉니다.
-
-```bash
-ros2 run turtlesim turtlesim_node --ros-args -r /turtle1/color_sensor:=/turtlesim/color_sensor
-```
-
-터미널 B: 키보드로 turtle1을 움직입니다. 방향키를 누를 때 이 터미널에 포커스를 둡니다.
-
-```bash
-ros2 run turtlesim turtle_teleop_key
-```
-
-터미널 C: 수업에서 안내한 실습 명령을 실행합니다.
-학생 파일의 `실습 1~3`을 직접 작성하고 `pass`가 필요 없으면 삭제합니다.
-완성 답은 GitHub의 `solutions` 브랜치에서 확인합니다.
-
-`lesson2_1` ~ `lesson2_4`는 turtle1 속도를 자동 발행하므로 터미널 B를 중지하세요.
-여러 노드가 `/turtle1/cmd_vel`에 서로 다른 명령을 동시에 보내면 움직임이 충돌합니다.
-같은 토픽에 명령을 보내는 실습을 동시에 실행하지 않습니다.
-
-## core20 / GLIBC_PRIVATE 문제
-
-`libpthread.so.0` 또는 `GLIBC_PRIVATE` 오류와 `/snap/core20/` 경로가 보이면
-호스트 또는 Snap 실행 환경의 라이브러리 충돌입니다. 패키지의 Python 코드 오류와
-구분해야 합니다. 시스템 라이브러리를 삭제하거나 교체하지 마세요.
-Snap IDE의 내장 터미널을 벗어나 일반 Ubuntu 터미널에서 ROS 환경을 source한 뒤
-터미널 A 명령으로 turtlesim을 실행하세요. 라이브 검증은 그 환경에서 수행합니다.
